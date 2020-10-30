@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo 'Frequence;IP' > IP_Log.csv
+awk '{print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -rh | sed 's/\s\+/;/g' | cut -c2- >> IP_Log.csv
+chmod +r IP_Log.csv

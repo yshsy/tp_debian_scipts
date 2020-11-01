@@ -1,0 +1,3 @@
+#!/bin/bash
+
+psql -h 192.168.0.2 -U psqluser -d psqldatabase -c '\copy (select count(p.guid) as "nombre darticle", count(u.user_login) as "nombre utilisateur" from wp_posts as p FULL join wp_users as u on p.guid=u.user_login) to ./file.csv csv header'|sed '1d' > file.csv
